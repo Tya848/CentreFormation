@@ -124,7 +124,7 @@ BEGIN
         END;
         -- Les insertions
         START TRANSACTION;
-
+        --hello albolaye
         INSERT INTO personne (id_personne, nom, prenom, email) VALUES
         (1, 'Haddock', 'Archibald', 'haddock@moulinsart.be'),
           (2, 'Castafiore','Bianca', 'bianca.castafiore@scala.it'),
