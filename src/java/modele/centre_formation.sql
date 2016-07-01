@@ -175,4 +175,44 @@ BEGIN
     END;
 END§
 
+
+DROP FUNCTION IF EXISTS initcap§
+CREATE FUNCTION initcap(chaine text) RETURNS text CHARSET utf8 deterministic
+BEGIN
+    DECLARE gauche, droite text;
+    SET gauche='';
+    SET droite ='';
+    WHILE chaine LIKE '% %' DO -- si elle contient un espace
+        SELECT SUBSTRING_INDEX(chaine, ' ', 1) INTO gauche;
+        SELECT SUBSTRING(chaine, LOCATE(' ', chaine) + 1) INTO chaine; SELECT CONCAT(droite, ' ',
+        CONCAT(UPPER(SUBSTRING(gauche, 1, 1)),
+        LOWER(SUBSTRING(gauche, 2)))) INTO droite
+    END WHILE;
+    RETURN LTRIM(CONCAT(droite, ' ', CONCAT(UPPER(SUBSTRING(chaine,1,1)), LOWER(SUBSTRING(chaine, 2)))));
+END§
+
+
+DROP TRIGGER IF EXISTS personne_before_insert_trigger§ 
+CREATE TRIGGER personne_before_insert_trigger
+BEFORE INSERT ON personne
+FOR EACH ROW
+BEGIN
+  SET NEW.prenom = trim(initcap(NEW.prenom)); 
+  SET NEW.nom = trim(upper(NEW.nom));
+  SET NEW.email = trim(NEW.email);
+END§
+
+DROP TRIGGER IF EXISTS personne_before_update_trigger§ 
+CREATE TRIGGER personne_before_update_trigger
+BEFORE UPDATE ON personne
+FOR EACH ROW
+BEGIN
+  SET NEW.prenom = trim(initcap(NEW.prenom));
+  SET NEW.nom = trim(upper(NEW.nom));
+  SET NEW.email = trim(NEW.email);
+END§
+
+
 CALL centre_formation_refresh() §
+
+
