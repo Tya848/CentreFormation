@@ -40,6 +40,7 @@ public class CreerProjetServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
 
         String nom = request.getParameter("nom");
         request.getRequestDispatcher("WEB-INF/formProjet.jsp").forward(request, response);
