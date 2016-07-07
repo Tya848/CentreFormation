@@ -78,10 +78,11 @@ public class Projet {
         this.creerDate = creerDate;
     }
 
-    public Projet(int id, int id_createur, int id_promotion, String sujet, String titre, Date dateLimite) {
+    public Projet(int id, int id_createur, int id_promotion, Date creerDate, String sujet, String titre, Date dateLimite) {
         this.id = id;
         this.id_createur = id_createur;
         this.id_promotion = id_promotion;
+        this.creerDate = creerDate;
         this.sujet = sujet;
         this.titre = titre;
         this.dateLimite = dateLimite;

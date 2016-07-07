@@ -47,14 +47,17 @@ public class CreerProjetServlet extends HttpServlet {
         String titre = request.getParameter("titre");
         String sujet = request.getParameter("sujet");       
         Date dateLimite = java.sql.Date.valueOf(request.getParameter("dateLimite"));
+        Date creerDate = new java.sql.Date((new java.util.Date()).getTime());
+             
         
         
-        Projet projet = new Projet(-1, 10, 1, sujet, titre, dateLimite);
+        Projet projet = new Projet(-1, 10, 1, creerDate ,sujet, titre, dateLimite);
         
         
             projet.insert();
         } catch (SQLException ex) {
             Logger.getLogger(CreerProjetServlet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
             request.getRequestDispatcher("WEB-INF/formProjet.jsp").forward(request, response);
         }
         
