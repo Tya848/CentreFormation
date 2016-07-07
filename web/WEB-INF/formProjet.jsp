@@ -18,7 +18,7 @@
             <br>
             Titre : <input type="text" name="titre" />
             <br>
-            A rendre le : <input type="date" name="dateLimite"/> 
+            A rendre le : <input type="date" name="dateLimite" /> (yyyy-mm-jj)
             <br>        
             <input type="submit" value="Creer Projet"> 
         </form>
