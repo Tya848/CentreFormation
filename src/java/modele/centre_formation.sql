@@ -19,8 +19,10 @@ CREATE TABLE IF NOT EXISTS personne (
   nom VARCHAR(45) NOT NULL,
   prenom VARCHAR(45) NOT NULL,
   email VARCHAR(45) NOT NULL,
+  password VARCHAR(45) NOT NULL,
   PRIMARY KEY (id_personne),
   UNIQUE INDEX email_UNIQUE (email ASC))
+  UNIQUE INDEX password_UNIQUE (password ASC))
 ENGINE = InnoDB§
 
 
@@ -125,17 +127,17 @@ BEGIN
         -- Les insertions
         START TRANSACTION;
         --hello albolaye
-        INSERT INTO personne (id_personne, nom, prenom, email) VALUES
-        (1, 'Haddock', 'Archibald', 'haddock@moulinsart.be'),
-          (2, 'Castafiore','Bianca', 'bianca.castafiore@scala.it'),
-          (3, 'Tournesol', 'Tryphon', 'tournesol@moulinsart.be'),
-          (4, 'Lampion', 'Séraphin', 'lampion@mondass.fr'),
-        (5, 'Krad' , 'Imen', 'krad_imen@yahoo.fr'),
-        (6, 'Siby' , 'Abdoulaye', 'absiby@yahoo.fr'),
-        (7, 'Twahirwa' , 'Jean vladimir' , 'tvradmir@yahoo.fr'),
-        (8, 'Lutula' , 'Okito' , 'okito82@hotmail.fr'),
-        (9, 'Feyte' ,'Florien' , 'f.feyete@gmail.com'),
-        (10, 'Plase' , 'Michelle' , 'm.place@gmail.com');
+        INSERT INTO personne (id_personne, nom, prenom, email, password) VALUES
+	  (1, 'Haddock', 'Archibald', 'haddock@moulinsart.be', 'Archibald'),
+	  (2, 'Castafiore', 'Bianca', 'bianca.castafiore@scala.it', 'Bianca'),
+	  (3, 'Tournesol', 'Tryphon', 'tournesol@moulinsart.be', 'Tryphon'),
+	  (4, 'Lampion', 'Séraphin', 'lampion@mondass.fr', 'Séraphin'),
+      (5, 'Krad', 'Imen', 'kradimen@yahoo.fr', 'Imen'),
+      (6, 'Siby', 'Abdoulaye', 'absiby@yahoo.fr', 'Abdoulaye'),
+      (7, 'Twahirwa', 'Jean vladimir', 'tvradmir@yahoo.fr', 'vladimir'),
+      (8, 'Lutula', 'Okito', 'okito92@hotmail.fr', 'Okito'),
+      (9, 'Feyte', 'Florian', 'f.feyte@gmail.com', 'Florian'),
+      (10, 'Plasse', 'Michel', 'm.plasse@gmail.com', 'Michel');
 
         INSERT INTO promotion (id_promotion, nom) VALUES
           (1, 'java'),
