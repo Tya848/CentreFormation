@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.Projet;
 
 /**
  *
@@ -40,9 +42,20 @@ public class CreerProjetServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+ 
+        String titre = request.getParameter("titre");
+        String sujet = request.getParameter("sujet");       
+        Date dateLimite = java.sql.Date.valueOf(request.getParameter("dateLimite"));
         
-
-        String nom = request.getParameter("nom");
+        
+        Projet projet = new Projet(-1, 10, 1, sujet, titre, dateLimite);
+        
+        try {
+            projet.insert();
+        } catch (SQLException ex) {
+            Logger.getLogger(CreerProjetServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         request.getRequestDispatcher("WEB-INF/formProjet.jsp").forward(request, response);
     }
 
