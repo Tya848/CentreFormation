@@ -15,8 +15,11 @@
         <h1>Nouveau Projet</h1>
         <form action="" method="POST">
             Sujet : <input type="text" name="sujet" />
+            <br>
             Titre : <input type="text" name="titre" />
+            <br>
             A rendre le : <input type="date" name="dateLimite"/> 
+            <br>        
             <input type="submit" value="Creer Projet"> 
         </form>
     </body>
