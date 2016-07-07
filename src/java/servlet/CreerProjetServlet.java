@@ -36,13 +36,14 @@ public class CreerProjetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/fromProjet.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/formProjet.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
  
+        try {
         String titre = request.getParameter("titre");
         String sujet = request.getParameter("sujet");       
         Date dateLimite = java.sql.Date.valueOf(request.getParameter("dateLimite"));
@@ -50,13 +51,14 @@ public class CreerProjetServlet extends HttpServlet {
         
         Projet projet = new Projet(-1, 10, 1, sujet, titre, dateLimite);
         
-        try {
+        
             projet.insert();
         } catch (SQLException ex) {
             Logger.getLogger(CreerProjetServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.getRequestDispatcher("WEB-INF/formProjet.jsp").forward(request, response);
         }
         
-        request.getRequestDispatcher("WEB-INF/formProjet.jsp").forward(request, response);
+       
     }
 
 }
